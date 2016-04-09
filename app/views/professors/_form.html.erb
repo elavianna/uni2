@@ -1,0 +1,30 @@
+<%= form_for(@professor) do |f| %>
+  <% if @professor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+
+      <ul>
+      <% @professor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_completo %><br>
+    <%= f.text_field :nome_completo %>
+  </div>
+  <div class="field">
+    <%= f.label :data_admissao %><br>
+    <%= f.date_select :data_admissao %>
+  </div>
+<div class="field">
+    <%= f.label :universidade %><br>
+<%= f.collection_select :universidade_id,Universidade.all,:id,:nome %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
